@@ -17,6 +17,22 @@ python file_organizer.py
 
 Make sure you have Python installed on your system.
 
+## Docker
+To pull the image from Docker Hub, run the following command in your terminal:
+
+```sh
+docker pull bfol/file_organizer:v1.0
+```
+
+Once the image is pulled, you can run the container using the following command:
+
+```sh
+docker run -v /Users/YourUsername/Downloads:/app/Downloads bfol/file_organizer:v1.0
+``` 
+
+Replace YourUsername with your actual username on your system.
+
+
 ## License
 
 This project is licensed under the MIT License.
