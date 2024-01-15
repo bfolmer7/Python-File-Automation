@@ -27,15 +27,22 @@ def get_destination_folder(extension):
         'jpeg': os.path.join(user_profile, 'Pictures'),
         'gif': os.path.join(user_profile, 'Pictures'),
         'jfif': os.path.join(user_profile, 'Pictures'),
+        'psd': os.path.join(user_profile, 'Pictures'),
         'mp4': os.path.join(user_profile, 'Videos'),
         'mov': os.path.join(user_profile, 'Videos'),
         'mp3': os.path.join(user_profile, 'Music'),
         'm4a': os.path.join(user_profile, 'Music'),
         'wav': os.path.join(user_profile, 'Music'),
+        'aac': os.path.join(user_profile, 'Music'),
+        'flac': os.path.join(user_profile, 'Music'),
         'docx': os.path.join(user_profile, 'Documents'),
+        'doc': os.path.join(user_profile, 'Documents'),
         'pdf': os.path.join(user_profile, 'Documents'),
         'xlsx': os.path.join(user_profile, 'Documents'),
         'txt': os.path.join(user_profile, 'Documents'),
+        'pptx': os.path.join(user_profile, 'Documents'),
+        'ppt': os.path.join(user_profile, 'Documents'),
+
     }
     return destinations.get(extension.lower())
 
@@ -70,9 +77,9 @@ if run_script():
                 current_category = dest_folder
                 logging.info(separator)
         else:
-            move_message = f'Ignored: {filename} (unknown type)'
+            move_message = f'Ignored: {filename} (Unknown type)'
             print(move_message)
 
         logging.info(move_message)
     else:
-        print(f'Ignored: {filename} (unknown type)')
+        print(f'Ignored: {filename} (Unknown type)')
