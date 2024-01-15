@@ -8,8 +8,19 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s',
 )
 
+def run_script():
+    while True: 
+        user_input = input("Sort downloads folder (Y/N): ")
+        if user_input == "Y":
+            return True
+        elif user_input == "N":
+            return False
+        else:
+            print("Invalid input")
+
+
 def get_destination_folder(extension):
-    user_profile = os.environ['USERPROFILE']
+    user_profile = os.path.expanduser('~')
     destinations = {
         'png': os.path.join(user_profile, 'Pictures'),
         'jpg': os.path.join(user_profile, 'Pictures'),
@@ -40,23 +51,27 @@ def move_file(source_path, dest_path):
         logging.info(message)
         return message
 
-source_folder = os.path.join(os.environ['USERPROFILE'], 'Downloads')
 
-current_category = None  
-separator = '-' * 50  
+if run_script():
+    source_folder = os.path.join(os.path.expanduser('~'), 'Downloads')
+    current_category = None  
+    separator = '-' * 50  
 
-for filename in os.listdir(source_folder):
-    file_extension = filename.split('.')[-1].lower()
-    dest_folder = get_destination_folder(file_extension)
+    for filename in os.listdir(source_folder):
+        file_extension = filename.split('.')[-1].lower()
+        dest_folder = get_destination_folder(file_extension)
 
-    if dest_folder:
-        source_path = os.path.join(source_folder, filename)
-        dest_path = os.path.join(dest_folder, filename)
-        move_message = move_file(source_path, dest_path)
+        if dest_folder:
+            source_path = os.path.join(source_folder, filename)
+            dest_path = os.path.join(dest_folder, filename)
+            move_message = move_file(source_path, dest_path)
 
-        if dest_folder != current_category:
-            current_category = dest_folder
-            logging.info(separator)
+            if dest_folder != current_category:
+                current_category = dest_folder
+                logging.info(separator)
+        else:
+            move_message = f'Ignored: {filename} (unknown type)'
+            print(move_message)
 
         logging.info(move_message)
     else:
