@@ -22,6 +22,7 @@ def run_script():
 def get_destination_folder(extension):
     user_profile = os.path.expanduser('~')
     destinations = {
+        'heic': os.path.join(user_profile, 'Pictures'),
         'png': os.path.join(user_profile, 'Pictures'),
         'jpg': os.path.join(user_profile, 'Pictures'),
         'jpeg': os.path.join(user_profile, 'Pictures'),
